@@ -311,12 +311,177 @@ document.addEventListener('DOMContentLoaded', function() {
     // Context menu item click events
     document.querySelectorAll('.contextMenuItem').forEach(item => {
         item.addEventListener('click', function() {
-            if (this.textContent === 'Properties') {
-                alert('Properties dialog would appear here.');
-            }
+            // Hide context menu
             contextMenu.style.display = 'none';
+            
+            // Handle different context menu items
+            if (this.textContent === 'Properties') {
+                showPropertiesDialog();
+            }
         });
     });
+
+    // Function to show properties dialog
+    function showPropertiesDialog() {
+        // Create properties dialog window
+        const propertiesDialog = document.createElement('div');
+        propertiesDialog.className = 'window';
+        propertiesDialog.style.width = '350px';
+        propertiesDialog.style.height = '400px';
+        propertiesDialog.style.left = '50%';
+        propertiesDialog.style.top = '50%';
+        propertiesDialog.style.transform = 'translate(-50%, -50%)';
+        propertiesDialog.style.zIndex = '1000';
+        
+        // Create title bar
+        const titleBar = document.createElement('div');
+        titleBar.className = 'title-bar';
+        
+        const titleText = document.createElement('div');
+        titleText.className = 'title-bar-text';
+        titleText.textContent = 'System Properties';
+        
+        const titleControls = document.createElement('div');
+        titleControls.className = 'title-bar-controls';
+        titleControls.innerHTML = '<button aria-label="Close" id="closePropertiesBtn"></button>';
+        
+        titleBar.appendChild(titleText);
+        titleBar.appendChild(titleControls);
+        
+        // Create content
+        const content = document.createElement('div');
+        content.className = 'window-content';
+        content.style.padding = '15px';
+        
+        // Create tabs (just for show)
+        const tabs = document.createElement('div');
+        tabs.className = 'tabs';
+        tabs.style.display = 'flex';
+        tabs.style.borderBottom = '1px solid #808080';
+        tabs.style.marginBottom = '15px';
+        
+        const activeTab = document.createElement('div');
+        activeTab.textContent = 'General';
+        activeTab.style.padding = '5px 10px';
+        activeTab.style.backgroundColor = '#c0c0c0';
+        activeTab.style.borderTop = '1px solid #fff';
+        activeTab.style.borderLeft = '1px solid #fff';
+        activeTab.style.borderRight = '1px solid #808080';
+        activeTab.style.marginRight = '2px';
+        
+        const inactiveTab1 = document.createElement('div');
+        inactiveTab1.textContent = 'Device Manager';
+        inactiveTab1.style.padding = '5px 10px';
+        inactiveTab1.style.backgroundColor = '#c0c0c0';
+        inactiveTab1.style.borderBottom = '1px solid #c0c0c0';
+        inactiveTab1.style.marginRight = '2px';
+        
+        const inactiveTab2 = document.createElement('div');
+        inactiveTab2.textContent = 'Performance';
+        inactiveTab2.style.padding = '5px 10px';
+        inactiveTab2.style.backgroundColor = '#c0c0c0';
+        inactiveTab2.style.borderBottom = '1px solid #c0c0c0';
+        
+        tabs.appendChild(activeTab);
+        tabs.appendChild(inactiveTab1);
+        tabs.appendChild(inactiveTab2);
+        
+        // Create properties content
+        const propertiesContent = document.createElement('div');
+        
+        // Add system icon
+        const iconContainer = document.createElement('div');
+        iconContainer.style.display = 'flex';
+        iconContainer.style.alignItems = 'center';
+        iconContainer.style.marginBottom = '15px';
+        
+        const systemIcon = document.createElement('img');
+        systemIcon.src = 'icons/w98_windows.ico';
+        systemIcon.style.width = '32px';
+        systemIcon.style.height = '32px';
+        systemIcon.style.marginRight = '10px';
+        
+        const systemText = document.createElement('div');
+        systemText.innerHTML = '<strong>PythonAndVBA OS</strong><br>Build 95.2025.03.06';
+        
+        iconContainer.appendChild(systemIcon);
+        iconContainer.appendChild(systemText);
+        
+        // Add fun system properties
+        const propertiesList = document.createElement('div');
+        propertiesList.style.marginBottom = '20px';
+        
+        propertiesList.innerHTML = `
+            <p><strong>Registered to:</strong> Sven "Coding Is Fun" Bosau</p>
+            <p><strong>System:</strong> Retro Nostalgia 9000</p>
+            <p><strong>Memory:</strong> 640K (Should be enough for anybody!)</p>
+            <p><strong>Processor:</strong> Caffeinated Developer 2.0</p>
+            <p><strong>Hard Disk:</strong> 1.44 MB Floppy Disk (Extended)</p>
+            <p><strong>Operating System:</strong> PythonAndVBA OS 95</p>
+            <p><strong>Fun Level:</strong> Maximum Overdrive</p>
+            <p><strong>Easter Eggs:</strong> Several. Keep clicking!</p>
+        `;
+        
+        // Add OK button
+        const buttonContainer = document.createElement('div');
+        buttonContainer.style.display = 'flex';
+        buttonContainer.style.justifyContent = 'center';
+        buttonContainer.style.marginTop = '20px';
+        
+        const okButton = document.createElement('button');
+        okButton.className = 'button';
+        okButton.textContent = 'OK';
+        okButton.style.width = '80px';
+        
+        buttonContainer.appendChild(okButton);
+        
+        // Assemble all elements
+        propertiesContent.appendChild(iconContainer);
+        propertiesContent.appendChild(propertiesList);
+        propertiesContent.appendChild(buttonContainer);
+        
+        content.appendChild(tabs);
+        content.appendChild(propertiesContent);
+        
+        propertiesDialog.appendChild(titleBar);
+        propertiesDialog.appendChild(content);
+        
+        // Add to desktop
+        desktop.appendChild(propertiesDialog);
+        
+        // Add event listeners
+        document.getElementById('closePropertiesBtn').addEventListener('click', function() {
+            desktop.removeChild(propertiesDialog);
+        });
+        
+        okButton.addEventListener('click', function() {
+            desktop.removeChild(propertiesDialog);
+        });
+        
+        // Make dialog draggable
+        let isDraggingDialog = false;
+        let dialogOffsetX = 0;
+        let dialogOffsetY = 0;
+        
+        titleBar.addEventListener('mousedown', function(e) {
+            isDraggingDialog = true;
+            const rect = propertiesDialog.getBoundingClientRect();
+            dialogOffsetX = e.clientX - rect.left;
+            dialogOffsetY = e.clientY - rect.top;
+            propertiesDialog.style.transform = 'none'; // Remove the centering transform
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (isDraggingDialog) {
+                propertiesDialog.style.left = (e.clientX - dialogOffsetX) + 'px';
+                propertiesDialog.style.top = (e.clientY - dialogOffsetY) + 'px';
+            }
+        });
+        
+        document.addEventListener('mouseup', function() {
+            isDraggingDialog = false;
+        });
+    }
 
     // Music player functions
     function openMusicPlayer() {
@@ -905,5 +1070,52 @@ document.addEventListener('DOMContentLoaded', function() {
         hours = hours ? hours : 12; // Convert 0 to 12
         
         clock.textContent = `${hours}:${minutes} ${ampm}`;
+    }
+
+    // Check if device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Adjust behavior for mobile devices
+    if (isMobile) {
+        // Convert double-click to single-click for mobile
+        icons.forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Handle icon actions directly on mobile
+                if (this.id === 'computerIcon') {
+                    openExplorer();
+                } else if (this.id === 'internetIcon') {
+                    window.open('https://pythonandvba.com', '_blank');
+                } else if (this.id === 'musicIcon') {
+                    openMusicPlayer();
+                } else if (this.id === 'documentsIcon') {
+                    window.open('https://www.linkedin.com/in/sven-bosau/', '_blank');
+                } else if (this.id === 'videoIcon') {
+                    window.open('https://youtube.com/c/codingisfun', '_blank');
+                }
+            });
+        });
+        
+        // Adjust window behavior for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Center windows on mobile
+            const centerWindowsOnMobile = function() {
+                const windows = document.querySelectorAll('.window');
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                windows.forEach(window => {
+                    const windowWidth = window.offsetWidth;
+                    const windowHeight = window.offsetHeight;
+                    
+                    window.style.left = (viewportWidth - windowWidth) / 2 + 'px';
+                    window.style.top = (viewportHeight - windowHeight) / 3 + 'px';
+                });
+            };
+            
+            // Call on resize
+            window.addEventListener('resize', centerWindowsOnMobile);
+        });
     }
 });

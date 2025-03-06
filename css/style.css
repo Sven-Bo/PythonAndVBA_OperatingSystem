@@ -387,3 +387,112 @@ body.explorer-page {
     box-sizing: border-box;
     overflow-x: hidden;
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+    
+    #desktop {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .icon {
+        position: relative !important;
+        display: inline-flex;
+        margin: 10px;
+        left: auto !important;
+        top: auto !important;
+    }
+    
+    #taskbar {
+        position: fixed;
+        bottom: 0;
+    }
+    
+    #startMenu {
+        width: 80%;
+        max-width: 250px;
+    }
+    
+    .window {
+        position: fixed !important;
+        width: 90% !important;
+        height: 80% !important;
+        top: 10% !important;
+        left: 5% !important;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    .window-content {
+        overflow-y: auto;
+        max-height: calc(80vh - 40px);
+    }
+    
+    .music-player {
+        width: 90% !important;
+        height: auto !important;
+        max-height: 80vh;
+    }
+    
+    .playlist {
+        max-height: 30vh;
+    }
+}
+
+/* Mobile Explorer Page */
+@media screen and (max-width: 768px) {
+    body.explorer-page {
+        padding: 5px;
+    }
+    
+    .welcome-container {
+        padding: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .welcome-message, .contact-form {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-group input, .form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+    .icon {
+        width: 70px;
+        height: 80px;
+        margin: 5px;
+    }
+    
+    .icon span {
+        font-size: 10px;
+    }
+    
+    #startButton span {
+        display: none;
+    }
+    
+    #clock {
+        font-size: 10px;
+        min-width: 50px;
+    }
+    
+    .title-bar {
+        padding: 1px 3px;
+    }
+    
+    .title-bar-text {
+        font-size: 11px;
+    }
+}
