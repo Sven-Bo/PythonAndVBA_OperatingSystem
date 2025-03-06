@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PythonAndVBA OS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="icons/w98_windows.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="icon" id="computerIcon" data-name="My Computer" style="top: 20px; left: 20px;">
+            <img src="icons/w98_computer_explorer.ico" alt="My Computer">
+            <span>My Computer</span>
+        </div>
+        
+        <div class="icon" id="documentsIcon" data-name="My Documents" style="top: 120px; left: 20px;">
+            <img src="icons/w2k_my_documents.ico" alt="My Documents">
+            <span>LinkedIn</span>
+        </div>
+        
+        <div class="icon" id="internetIcon" data-name="Internet Explorer" style="top: 220px; left: 20px;">
+            <img src="icons/w2k_internet_explorer.ico" alt="Internet Explorer">
+            <span>Website</span>
+        </div>
+        
+        <div class="icon" id="videoIcon" data-name="Video" style="top: 320px; left: 20px;">
+            <img src="icons/w98_video_.ico" alt="Video">
+            <span>YouTube</span>
+        </div>
+        
+        <div class="icon" id="musicIcon" data-name="Music Player" style="top: 420px; left: 20px;">
+            <img src="icons/w98_media_player_file.ico" alt="Music Player">
+            <span>Music</span>
+        </div>
+        
+        <!-- Selection Box -->
+        <div id="selectionBox" style="display: none;"></div>
+        
+        <!-- Windows -->
+        <div id="windows"></div>
+        
+        <!-- Taskbar -->
+        <div id="taskbar">
+            <div id="startButton">
+                <img src="icons/w98_windows.ico" alt="Start" width="16" height="16">
+                Start
+            </div>
+            <div id="taskbarItems"></div>
+            <div id="systemTray">
+                <div id="clock"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Start Menu (hidden by default) -->
+    <div id="startMenu" style="display: none;">
+        <div class="startMenuHeader">
+            <span>PythonAndVBA OS</span>
+        </div>
+        <div class="startMenuItem" data-action="computer">My Computer</div>
+        <div class="startMenuItem" data-action="documents">LinkedIn</div>
+        <div class="startMenuItem" data-action="internet">Website</div>
+        <div class="startMenuItem" data-action="video">YouTube</div>
+        <div class="startMenuItem" data-action="music">Music</div>
+        <div class="startMenuSeparator"></div>
+        <div class="startMenuItem" data-action="shutdown">Shut Down...</div>
+    </div>
+    
+    <!-- Context Menu (hidden by default) -->
+    <div id="contextMenu" style="display: none;">
+        <div class="contextMenuItem">Open</div>
+        <div class="contextMenuItem">Explore</div>
+        <div class="contextMenuSeparator"></div>
+        <div class="contextMenuItem">Cut</div>
+        <div class="contextMenuItem">Copy</div>
+        <div class="contextMenuItem">Paste</div>
+        <div class="contextMenuSeparator"></div>
+        <div class="contextMenuItem">Create Shortcut</div>
+        <div class="contextMenuItem">Delete</div>
+        <div class="contextMenuItem">Rename</div>
+        <div class="contextMenuSeparator"></div>
+        <div class="contextMenuItem">Properties</div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

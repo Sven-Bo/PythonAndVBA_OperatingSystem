@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Computer - PythonAndVBA OS</title>
+    <link rel="icon" href="icons/w98_windows.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #c0c0c0 !important;
+            margin: 0;
+            padding: 10px;
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000;
+            font-size: 12px;
+            overflow-y: auto;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        .welcome-container {
+            background-color: #c0c0c0;
+            padding: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="explorer-page">
+    <div class="welcome-container">
+        <div class="welcome-header">
+            <img src="icons/w98_computer_explorer.ico" alt="Computer">
+            <h1>Welcome to PythonAndVBA OS</h1>
+        </div>
+        
+        <div class="welcome-message">
+            <h2>About Me</h2>
+            <p>Welcome to my retro-styled website! I'm Sven, the creator of PythonAndVBA.com and the YouTube channel "Coding Is Fun".</p>
+            <p>I'm passionate about teaching programming and automation to make everyday tasks easier and more efficient.</p>
+            <p>Feel free to check out my content:</p>
+            <p>
+                <a href="https://pythonandvba.com" target="_blank">PythonAndVBA.com</a> - My website with tutorials and resources<br>
+                <a href="https://youtube.com/c/codingisfun" target="_blank">YouTube Channel</a> - Video tutorials and coding tips<br>
+                <a href="https://www.linkedin.com/in/sven-bosau/" target="_blank">LinkedIn</a> - Connect with me professionally
+            </p>
+        </div>
+        
+        <div class="contact-form">
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="button">Send Message</button>
+                <div id="statusMessage"></div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Don't submit if any field is empty
+            if (!name || !email || !message) {
+                statusMessage.textContent = 'Please fill in all fields.';
+                statusMessage.style.display = 'block';
+                statusMessage.style.color = 'red';
+                return;
+            }
+            
+            // Clear previous status
+            statusMessage.textContent = '';
+            statusMessage.style.display = 'none';
+            
+            // Build webhook URL with query parameters
+            const webhookUrl = `https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY5MDYzNDA0MzU1MjZkNTUzMDUxMzAi_pc?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
+            
+            // Send data to webhook
+            fetch(webhookUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusMessage.textContent = 'Message sent successfully!';
+                    statusMessage.className = 'success';
+                    statusMessage.style.display = 'block';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    statusMessage.textContent = 'Error sending message. Please try again later.';
+                    statusMessage.className = 'error';
+                    statusMessage.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusMessage.textContent = 'Error sending message. Please try again later.';
+                statusMessage.className = 'error';
+                statusMessage.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
