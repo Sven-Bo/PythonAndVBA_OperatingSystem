@@ -15,14 +15,11 @@ A nostalgic Windows 95-themed personal website with interactive desktop elements
 1. Clone the repository
 2. Open `index.html` in your browser
 
-## 🤝 Connect with Me
-- 📺 **YouTube:** [CodingIsFun](https://youtube.com/c/CodingIsFun)
-- 🌐 **Website:** [PythonAndVBA](https://pythonandvba.com)
-- 💼 **LinkedIn:** [Sven Bosau](https://www.linkedin.com/in/sven-bosau/)
-- 📬 **Contact:** [Get in Touch](https://pythonandvba.com/contact)## 💖 Support
-If my tutorials help you, please consider [buying me a coffee](https://pythonandvba.com/coffee-donation).  
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://pythonandvba.com/coffee-donation)
-
+## Connect with Me
+- **YouTube:** [CodingIsFun](https://youtube.com/c/CodingIsFun)
+- **Website:** [PythonAndVBA](https://pythonandvba.com)
+- **LinkedIn:** [Sven Bosau](https://www.linkedin.com/in/sven-bosau/)
+- **Contact:** [Get in Touch](https://pythonandvba.com/contact)
 ## 📬 Feedback & Collaboration
 If you have ideas, feedback, or want to collaborate, reach out at contact@pythonandvba.com.  
 ![Logo](https://www.pythonandvba.com/banner-img)
